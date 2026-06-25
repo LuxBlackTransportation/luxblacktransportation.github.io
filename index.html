@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="google-site-verification" content="q0GhS5M3k5ITzUUGVA0Cl3vaKx8bv65mKpbbdeUbwD8" />
 <meta charset="UTF-8"/>
+<meta name="google-site-verification" content="q0GhS5M3k5ITzUUGVA0Cl3vaKx8bv65mKpbbdeUbwD8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Lux Black Transportation LLC – Orlando, Florida</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet"/>
@@ -392,6 +392,18 @@ footer{padding:2.2rem 3.5rem;border-top:1px solid var(--border);display:flex;ali
           </select>
         </div>
       </div>
+      <div class="f-row">
+        <div class="fg"><label>Vehicle Type</label>
+          <select id="vehicle">
+            <option>SUV</option><option>Sedan</option><option>Mercedes Sprinter Van</option>
+          </select>
+        </div>
+        <div class="fg"><label>Car Seat</label>
+          <select id="carseat">
+            <option>No Car Seat Needed</option><option>Child Car Seat (Toddler)</option><option>Infant Car Seat (Newborn)</option>
+          </select>
+        </div>
+      </div>
       <div class="fg"><label>Your Name</label><input type="text" id="name" placeholder="Full name"/></div>
       <button class="btn-book" onclick="sendWA()">&#128172; Send Reservation via WhatsApp</button>
       <p class="f-note">We confirm within minutes &nbsp;·&nbsp; (407) 752-2541</p>
@@ -439,18 +451,20 @@ footer{padding:2.2rem 3.5rem;border-top:1px solid var(--border);display:flex;ali
 
 <script>
 function sendWA(){
-  const pickup  = document.getElementById('pickup').value.trim();
-  const dropoff = document.getElementById('dropoff').value.trim();
-  const date    = document.getElementById('date').value;
-  const time    = document.getElementById('time').value;
-  const pax     = document.getElementById('passengers').value;
-  const svc     = document.getElementById('service').value;
-  const name    = document.getElementById('name').value.trim();
+  const pickup   = document.getElementById('pickup').value.trim();
+  const dropoff  = document.getElementById('dropoff').value.trim();
+  const date     = document.getElementById('date').value;
+  const time     = document.getElementById('time').value;
+  const pax      = document.getElementById('passengers').value;
+  const svc      = document.getElementById('service').value;
+  const vehicle  = document.getElementById('vehicle').value;
+  const carseat  = document.getElementById('carseat').value;
+  const name     = document.getElementById('name').value.trim();
   if(!pickup||!dropoff||!date||!time||!name){alert('Please fill in all fields.');return;}
   const d  = new Date(date+'T'+time);
   const ds = d.toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
   const ts = d.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
-  const msg = `🚙 *New Reservation – Lux Black Transportation*\n\n👤 *Name:* ${name}\n📍 *Pickup:* ${pickup}\n🏁 *Drop-off:* ${dropoff}\n📅 *Date:* ${ds}\n🕐 *Time:* ${ts}\n👥 *Passengers:* ${pax}\n🎯 *Service:* ${svc}\n\nPlease confirm. Thank you!`;
+  const msg = `🚙 *New Reservation – Lux Black Transportation*\n\n👤 *Name:* ${name}\n📍 *Pickup:* ${pickup}\n🏁 *Drop-off:* ${dropoff}\n📅 *Date:* ${ds}\n🕐 *Time:* ${ts}\n👥 *Passengers:* ${pax}\n🎯 *Service:* ${svc}\n🚘 *Vehicle:* ${vehicle}\n🪑 *Car Seat:* ${carseat}\n\nPlease confirm. Thank you!`;
   window.open('https://wa.me/14077522541?text='+encodeURIComponent(msg),'_blank');
 }
 document.getElementById('date').min = new Date().toISOString().split('T')[0];
